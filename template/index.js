@@ -1,4 +1,5 @@
 import { File, Text } from "@asyncapi/generator-react-sdk";
+import { TopicFunction } from "../components/TopicFunction";
 
 export default function ({ asyncapi, params }) {
     return (
@@ -10,6 +11,9 @@ export default function ({ asyncapi, params }) {
                 {`def __init__(self):
                     self.client = mqtt.Client()
                     self.client.connect(mqttBroker)`}
+            </Text>
+            <Text indent={2} newLines={2}>
+                <TopicFunction channels={asyncapi.channels().filterByReceive()} />
             </Text>
         </File>
     )
